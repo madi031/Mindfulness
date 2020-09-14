@@ -1,4 +1,6 @@
 const app = () => {
+  let configuredMinutes = [2, 5, 10];
+
   const sound = document.querySelector('.sound');
   const play = document.querySelector('.play');
   const outline = document.querySelector('.movingOutline circle');
@@ -48,8 +50,15 @@ const app = () => {
       return;
     }
 
+    if (configuredMinutes.indexOf(Number(minutes)) !== -1) {
+      customMinutesText.value = '';
+      return;
+    }
+
+    configuredMinutes.push(Number(minutes));
+
     var button = document.createElement('button');
-    button.textContent = `${minutes} minutes`;
+    button.textContent = `${minutes} ${minutes == 1 ? 'minute' : 'minutes'}`;
     button.dataset.time = Number(minutes) * 60;
 
     addListenerToMinutesButton(button);
